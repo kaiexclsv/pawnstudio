@@ -1,0 +1,81 @@
+{
+  "name": "Pawn",
+  "scopeName": "source.pawn",
+  "patterns": [
+    { "include": "#comments" },
+    { "include": "#include" },
+    { "include": "#directive" },
+    { "include": "#strings" },
+    { "include": "#numbers" },
+    { "include": "#control" },
+    { "include": "#storage" },
+    { "include": "#language-constants" },
+    { "include": "#tags" },
+    { "include": "#functions" },
+    { "include": "#constants" }
+  ],
+  "repository": {
+    "comments": {
+      "patterns": [
+        { "name": "comment.block.pawn", "begin": "/\\*", "end": "\\*/" },
+        { "name": "comment.line.double-slash.pawn", "match": "//.*$" }
+      ]
+    },
+    "include": {
+      "match": "^\\s*(#\\s*(?:include|tryinclude))\\s*(<[^>\\n]*>|\"[^\"\\n]*\")",
+      "captures": {
+        "1": { "name": "keyword.control.import.pawn" },
+        "2": { "name": "string.quoted.other.include.pawn" }
+      }
+    },
+    "directive": {
+      "name": "keyword.control.directive.pawn",
+      "match": "^\\s*#\\s*[a-zA-Z]+\\b"
+    },
+    "strings": {
+      "patterns": [
+        {
+          "name": "string.quoted.double.pawn",
+          "begin": "\"",
+          "end": "\"",
+          "patterns": [
+            { "name": "constant.character.escape.pawn", "match": "\\\\." },
+            { "name": "constant.other.placeholder.pawn", "match": "%[-0-9.]*[a-zA-Z]" }
+          ]
+        },
+        {
+          "name": "string.quoted.single.pawn",
+          "match": "'(\\\\.|[^'\\\\])'"
+        }
+      ]
+    },
+    "numbers": {
+      "name": "constant.numeric.pawn",
+      "match": "\\b(0x[0-9a-fA-F_]+|0b[01_]+|[0-9][0-9_]*(\\.[0-9]+)?)\\b"
+    },
+    "control": {
+      "name": "keyword.control.pawn",
+      "match": "\\b(if|else|for|while|do|switch|case|default|break|continue|return|goto|exit|sleep|assert)\\b"
+    },
+    "storage": {
+      "name": "storage.type.pawn",
+      "match": "\\b(new|static|stock|public|forward|native|const|enum|operator|sizeof|tagof|state|char|defined|main)\\b"
+    },
+    "language-constants": {
+      "name": "constant.language.pawn",
+      "match": "\\b(true|false|cellmax|cellmin|cellbits|INVALID_PLAYER_ID|INVALID_VEHICLE_ID)\\b"
+    },
+    "tags": {
+      "name": "entity.name.type.pawn",
+      "match": "\\b(Float|bool|Text|PlayerText|Menu|File|DBResult|DB|Cache|ORM|Group|Timer|Node|NPC)(?=:)"
+    },
+    "functions": {
+      "name": "entity.name.function.pawn",
+      "match": "\\b[A-Za-z_@][A-Za-z0-9_@]*(?=\\s*\\()"
+    },
+    "constants": {
+      "name": "constant.other.pawn",
+      "match": "\\b[A-Z][A-Z0-9_]{2,}\\b"
+    }
+  }
+}
