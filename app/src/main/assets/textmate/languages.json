@@ -1,0 +1,9 @@
+{
+  "languages": [
+    {
+      "grammar": "textmate/pawn.tmLanguage.json",
+      "name": "pawn",
+      "scopeName": "source.pawn"
+    }
+  ]
+}
